@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Татьяна Мохначева](https://up.htmlacademy.ru/javascript/23/user/1761943).
-* Наставник: `Артём Рудов`.
+* Студент: [Татьяна Мохначева](https://htmlacademy.ru/profile/id1761943).
+* Наставник: [Артём Рудов] (https://htmlacademy.ru/profile/artrudov).
 
 ---
 
