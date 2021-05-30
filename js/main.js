@@ -16,10 +16,10 @@ getRandomNumber(2, 342);
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно.
 
 const getRandomFloat = (min, max, decimalPoints) => {
-    if (max > min && min >= 0 && decimalPoints >= 0) {
-  const randomNumber = Math.random() * (max - min + 1) + min;
+  if (max > min && min >= 0 && decimalPoints >= 0) {
+    const randomNumber = Math.random() * (max - min + 1) + min;
     return randomNumber.toFixed(decimalPoints);
   }
-return 'Заданы некорректные координаты';
-}
+  return 'Заданы некорректные координаты';
+ }
 getRandomFloat(2, 12, 3);
