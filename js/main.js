@@ -21,5 +21,5 @@ const getRandomFloat = (min, max, decimalPoints) => {
     return randomNumber.toFixed(decimalPoints);
   }
   return 'Заданы некорректные координаты';
- }
+};
 getRandomFloat(2, 12, 3);
