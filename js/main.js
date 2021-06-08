@@ -106,4 +106,4 @@ const createCard = () => {
   };
 };
 const similarCards = new Array(10).fill(null).map(() => createCard());
-console.log(similarCards);
+similarCards;
