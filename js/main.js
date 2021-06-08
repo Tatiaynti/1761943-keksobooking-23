@@ -80,14 +80,6 @@ const getRandomArrayElement = (elements) => {
   return elements[getRandomNumber(0, elements.length - 1)];
 };
 
-const createOffer = () => {
-  return {
-    address: LOCATION,
-
-    photo: getRandomArrayElement(PHOTOS),
-  };
-};
-
 const createCard = () => {
   const latitude = getRandomFloat(35.65000, 35.70000);
   const longitude = getRandomFloat(139.70000, 139.80000);
