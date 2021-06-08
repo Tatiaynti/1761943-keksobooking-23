@@ -76,9 +76,8 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
-const getRandomArrayElement = (elements) => {
-  return elements[getRandomNumber(0, elements.length - 1)];
-};
+const getRandomArrayElement = (elements) =>
+  elements[getRandomNumber(0, elements.length - 1)];
 
 const createCard = () => {
   const latitude = getRandomFloat(35.65000, 35.70000);
@@ -107,3 +106,4 @@ const createCard = () => {
   };
 };
 const similarCards = new Array(10).fill(null).map(() => createCard());
+console.log(similarCards);
