@@ -15,7 +15,7 @@ const getRandomFloat = (min, max, decimalPoints = 1) => {
   if (max > min && min >= 0) {
     const randomNumber = Math.random() * (max - min + 1) + min;
     return randomNumber.toFixed(decimalPoints);
-  }
+  };
   return undefined;
 };
 
@@ -27,7 +27,7 @@ for (let i = 1; i <= 10; i++ ) {
   else {
     AVATARS.push('img/avatars/user' + i + '.png');
   }
-};
+}
 
 const TITLES = [
   'Милый домик на побережье',
@@ -92,10 +92,10 @@ const createCard = () => {
   const checkin = getRandomArrayElement(CHECKIN_HOURS);
   const checkout = getRandomArrayElement(CHECKOUT_HOURS);
   const features = new Array(getRandomNumber(1, FEATURE_ITEMS.length)).fill('').map(() =>
-  FEATURE_ITEMS[getRandomNumber(0, FEATURE_ITEMS.length - 1)]);
+    FEATURE_ITEMS[getRandomNumber(0, FEATURE_ITEMS.length - 1)]);
   const description = getRandomArrayElement(DESCRIPTIONS);
   const photos = new Array(getRandomNumber(1, PHOTOS.length)).fill('').map(() =>
-  PHOTOS[getRandomNumber(0, PHOTOS.length - 1)]);
+    PHOTOS[getRandomNumber(0, PHOTOS.length - 1)]);
 
   return {
     author: {
