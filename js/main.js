@@ -15,12 +15,14 @@ const getRandomFloat = (min, max, decimalPoints = 1) => {
   if (max > min && min >= 0) {
     const randomNumber = Math.random() * (max - min + 1) + min;
     return randomNumber.toFixed(decimalPoints);
-  };
+  }
   return undefined;
 };
 
 const AVATARS = [];
-for (let i = 1; i <= 10; i++ ) {
+let i = 0;
+while (i <= 9) {
+  i++;
   if (i<=9) {
     AVATARS.push('img/avatars/user0' + i + '.png');
   }
