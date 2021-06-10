@@ -22,10 +22,10 @@ const getRandomFloat = (min, max, decimalPoints = 1) => {
 const AVATARS = [];
 for (let index = 1; index <= 10; index++) {
   if (index<=9) {
-    AVATARS.push('img/avatars/user0' + index + '.png');
+    AVATARS.push('img/avatars/user0' + `${index}` + '.png');
   }
   else {
-    AVATARS.push('img/avatars/user' + index + '.png');
+    AVATARS.push('img/avatars/user' + `${index}` + '.png');
   }
 }
 
