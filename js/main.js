@@ -19,16 +19,16 @@ const getRandomFloat = (min, max, decimalPoints = 1) => {
   return undefined;
 };
 
-const AVATARS = [
-  'img/avatars/user01.png',
-  'img/avatars/user02.png',
-  'img/avatars/user03.png',
-  'img/avatars/user04.png',
-  'img/avatars/user05.png',
-  'img/avatars/user06.png',
-  'img/avatars/user07.png',
-  'img/avatars/user08.png',
-];
+const AVATARS = [];
+for (let i = 1; i <= 10; i++ ) {
+  if (i<=9) {
+    AVATARS.push('img/avatars/user0' + i + '.png');
+  }
+  else {
+    AVATARS.push('img/avatars/user' + i + '.png');
+  }
+};
+
 const TITLES = [
   'Милый домик на побережье',
   'Лучший отель для отдыха всей семьёй',
@@ -80,30 +80,46 @@ const getRandomArrayElement = (elements) =>
   elements[getRandomNumber(0, elements.length - 1)];
 
 const createCard = () => {
-  const latitude = getRandomFloat(35.65000, 35.70000);
-  const longitude = getRandomFloat(139.70000, 139.80000);
+  const avatar = getRandomArrayElement(AVATARS);
+  const lat = getRandomFloat(35.65000, 35.70000);
+  const lng = getRandomFloat(139.70000, 139.80000);
+  const title = getRandomArrayElement(TITLES);
+  const address = `${lat}, ${lng}`;
+  const price = getRandomNumber(1234, 387423);
+  const type = getRandomArrayElement(TYPES);
+  const rooms = getRandomNumber(0, 5);
+  const guests = getRandomNumber(1, 7);
+  const checkin = getRandomArrayElement(CHECKIN_HOURS);
+  const checkout = getRandomArrayElement(CHECKOUT_HOURS);
+  const features = new Array(getRandomNumber(1, FEATURE_ITEMS.length)).fill('').map(() =>
+  FEATURE_ITEMS[getRandomNumber(0, FEATURE_ITEMS.length - 1)]);
+  const description = getRandomArrayElement(DESCRIPTIONS);
+  const photos = new Array(getRandomNumber(1, PHOTOS.length)).fill('').map(() =>
+  PHOTOS[getRandomNumber(0, PHOTOS.length - 1)]);
+
   return {
     author: {
-      avatar: getRandomArrayElement(AVATARS),
+      avatar,
     },
     location: {
-      lat: latitude,
-      lng: longitude,
+      lat,
+      lng,
     },
     offer: {
-      title: getRandomArrayElement(TITLES),
-      address: `${latitude}, ${longitude}`,
-      price: getRandomNumber(1234, 387423),
-      type: getRandomArrayElement(TYPES),
-      rooms: getRandomNumber(0, 5),
-      guests: getRandomNumber(1, 7),
-      checkin: getRandomArrayElement(CHECKIN_HOURS),
-      checkout: getRandomArrayElement(CHECKOUT_HOURS),
-      features: new Array(getRandomNumber(1, FEATURE_ITEMS.length)).fill('').map(() => FEATURE_ITEMS[getRandomNumber(0, FEATURE_ITEMS.length - 1)]),
-      description: getRandomArrayElement(DESCRIPTIONS),
-      photos: new Array(getRandomNumber(1, PHOTOS.length)).fill('').map(() => PHOTOS[getRandomNumber(0, PHOTOS.length - 1)]),
+      title,
+      address,
+      price,
+      type,
+      rooms,
+      guests,
+      checkin,
+      checkout,
+      features,
+      description,
+      photos,
     },
   };
 };
+
 const similarCards = new Array(10).fill(null).map(() => createCard());
 similarCards;
