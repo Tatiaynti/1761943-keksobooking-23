@@ -20,14 +20,12 @@ const getRandomFloat = (min, max, decimalPoints = 1) => {
 };
 
 const AVATARS = [];
-let i = 0;
-while (i <= 9) {
-  i++;
-  if (i<=9) {
-    AVATARS.push('img/avatars/user0' + i + '.png');
+for (let index = 1; index <= 10; index++) {
+  if (index<=9) {
+    AVATARS.push('img/avatars/user0' + index + '.png');
   }
   else {
-    AVATARS.push('img/avatars/user' + i + '.png');
+    AVATARS.push('img/avatars/user' + index + '.png');
   }
 }
 
