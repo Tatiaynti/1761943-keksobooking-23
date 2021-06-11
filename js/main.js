@@ -126,7 +126,7 @@ const createCard = () => {
       features,
       description,
       photos,
-    }
+    },
   };
 };
 
