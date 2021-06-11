@@ -20,8 +20,10 @@ const getRandomFloat = (min, max, decimalPoints = 1) => {
 };
 
 const AVATARS = [];
-for (let index = 1; index <= 10; index++) {
-  if (index<=9) {
+const avatarsNumber = 10;
+const avatarsNumberWithZeroInLink = 9;
+for (let index = 1; index <= avatarsNumber; index++) {
+  if (index <= avatarsNumberWithZeroInLink) {
     AVATARS.push(`img/avatars/user0${index}.png`);
   }
   else {
@@ -75,37 +77,44 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
+const SIMILAR_OFFERS_COUNT = 10;
 
 const getRandomArrayElement = (elements) =>
   elements[getRandomNumber(0, elements.length - 1)];
 
 const createCard = () => {
   const avatar = getRandomArrayElement(AVATARS);
-  const lat = getRandomFloat(35.65000, 35.70000);
-  const lng = getRandomFloat(139.70000, 139.80000);
+  const latMin = 35.65000;
+  const latMax = 35.70000;
+  const lat = getRandomFloat(latMin, latMax);
+  const lngMin = 139.70000;
+  const lngMax = 139.80000;
+  const lng = getRandomFloat(lngMin, lngMax);
   const title = getRandomArrayElement(TITLES);
   const address = `${lat}, ${lng}`;
-  const price = getRandomNumber(1234, 387423);
+  const priceMin = 1234;
+  const priceMax = 387423;
+  const price = getRandomNumber(priceMin, priceMax);
   const type = getRandomArrayElement(TYPES);
-  const rooms = getRandomNumber(0, 5);
-  const guests = getRandomNumber(1, 7);
+  const roomsMin = 0;
+  const roomsMax = 5;
+  const rooms = getRandomNumber(roomsMin, roomsMax);
+  const guestsMin = 1;
+  const guestsMax = 7;
+  const guests = getRandomNumber(guestsMin, guestsMax);
   const checkin = getRandomArrayElement(CHECKIN_HOURS);
   const checkout = getRandomArrayElement(CHECKOUT_HOURS);
-  const features = new Array(getRandomNumber(1, FEATURE_ITEMS.length)).fill('').map(() =>
+  const featuresArray = new Array(getRandomNumber(1, FEATURE_ITEMS.length)).fill('').map(() =>
     FEATURE_ITEMS[getRandomNumber(0, FEATURE_ITEMS.length - 1)]);
+  const features = [...new Set(featuresArray)];
   const description = getRandomArrayElement(DESCRIPTIONS);
-  const photos = new Array(getRandomNumber(1, PHOTOS.length)).fill('').map(() =>
+  const photosArray = new Array(getRandomNumber(1, PHOTOS.length)).fill('').map(() =>
     PHOTOS[getRandomNumber(0, PHOTOS.length - 1)]);
+  const photos = [...new Set(photosArray)];
 
   return {
-    author: {
-      avatar,
-    },
-    location: {
-      lat,
-      lng,
-    },
     offer: {
+      author: avatar,
       title,
       address,
       price,
@@ -117,9 +126,9 @@ const createCard = () => {
       features,
       description,
       photos,
-    },
+    }
   };
 };
 
-const similarCards = new Array(10).fill(null).map(() => createCard());
+const similarCards = new Array(SIMILAR_OFFERS_COUNT).fill(null).map(() => createCard());
 similarCards;
