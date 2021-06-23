@@ -77,8 +77,8 @@ const fillOfferTemplate = (author, offer) => {
     offerElement.querySelector('.popup__photos').remove();
   }
 
-  if (author.avatar) {
-    offerElement.querySelector('.popup__avatar').src = author.avatar;
+  if (author) {
+    offerElement.querySelector('.popup__avatar').src = author;
   }
   else {
     offerElement.querySelector('.popup__avatar').remove();
