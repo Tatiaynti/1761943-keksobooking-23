@@ -1,2 +1,4 @@
 import {similarCards} from './data.js';
-similarCards;
+import {fillOfferTemplate} from './popup.js';
+
+fillOfferTemplate(similarCards[0].author, similarCards[0].offer);

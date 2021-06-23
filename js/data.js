@@ -86,8 +86,8 @@ const createCard = () => {
   const photosArray = new Array(getRandomNumber(1, PHOTOS.length)).fill('').map(() =>
     PHOTOS[getRandomNumber(0, PHOTOS.length - 1)]);
   return {
+    author: avatar,
     offer: {
-      author: avatar,
       title: getRandomArrayElement(TITLES),
       address: `${lat}, ${lng}`,
       price: getRandomNumber(PRICE_MIN, PRICE_MAX),
