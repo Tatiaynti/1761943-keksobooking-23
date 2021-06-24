@@ -1,4 +1,3 @@
-import {similarCards} from './data.js';
-import {fillOfferTemplate} from './popup.js';
+import {mapCanvas} from './map.js';
 
-fillOfferTemplate(similarCards[0].author, similarCards[0].offer);
+mapCanvas;
