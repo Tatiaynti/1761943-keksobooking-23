@@ -7,49 +7,55 @@ const offerType = {
   'hotel': 'Отель',
 };
 
+const checkAvailability = (element, content) => {
+  if (content == undefined) {
+    element.remove();
+  }
+  element.textContent = content;
+};
+
 const fillOfferTemplate = (author, offer) => {
   const offerElement = similarOfferTemplate.cloneNode(true);
 
-  const checkAvailability = () => {
-    if (offer.title.length === 0) {offerElement.querySelector('.popup__title').remove();}
-    if (offer.address.length === 0) {offerElement.querySelector('.popup__text--address').remove();}
-    if (offer.price.length === 0) {offerElement.querySelector('.popup__text--price').remove();}
-    if (offer.type.length === 0) {offerElement.querySelector('.popup__type').remove();}
-    if ((offer.rooms.length === 0) || (offer.guests.length === 0)) {offerElement.querySelector('.popup__text--capacity').remove();}
-    if ((offer.checkin.length === 0) || (offer.checkout.length === 0)) {offerElement.querySelector('.popup__text--time').remove();}
-    if (offer.description.length === 0) {offerElement.querySelector('.popup__description').remove();}
-    if (author.length === 0) {offerElement.querySelector('.popup__avatar').remove();}
-    if (offer.features.length === 0) {offerElement.querySelector('.popup__features').remove();}
-    if (offer.photos.length === 0) {offerElement.querySelector('.popup__photos').remove();}
-  };
+  const popupTitle = offerElement.querySelector('.popup__title');
+  const popupAddress = offerElement.querySelector('.popup__text--address');
+  const popupPrice = offerElement.querySelector('.popup__text--price');
+  const popupType = offerElement.querySelector('.popup__type');
+  const popupCapacity = offerElement.querySelector('.popup__text--capacity');
+  const popupTime = offerElement.querySelector('.popup__text--time');
+  const popupDescription = offerElement.querySelector('.popup__description');
+  const popupAvatar = offerElement.querySelector('.popup__avatar');
 
-  offerElement.querySelector('.popup__title').textContent = offer.title;
-  offerElement.querySelector('.popup__text--address').textContent = offer.address;
-  offerElement.querySelector('.popup__text--price').textContent = `${offer.price} ₽/ночь`;
-  offerElement.querySelector('.popup__type').textContent = offerType[offer.type];
-  offerElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
-  offerElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
-  offerElement.querySelector('.popup__description').textContent = offer.description;
-  offerElement.querySelector('.popup__avatar').src = author;
+  checkAvailability(popupTitle, offer.title);
+  checkAvailability(popupAddress, offer.address);
+  checkAvailability(popupPrice, `${offer.price} ₽/ночь`);
+  checkAvailability(popupType, offerType[offer.type]);
+  checkAvailability(popupCapacity, `${offer.rooms} комнаты для ${offer.guests} гостей`);
+  checkAvailability(popupTime, `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`);
+  checkAvailability(popupDescription, offer.description);
+
+  popupAvatar.src = author;
+  if (!author) {
+    avatar.remove();
+  }
 
   const modifiers = offer.features.map((feature) => `popup__feature--${feature}`);
-  const featuresOffer = offerElement.querySelectorAll('.popup__feature');
-  featuresOffer.forEach((item) => {
+  const popupFeature = offerElement.querySelectorAll('.popup__feature');
+  popupFeature.forEach((item) => {
     const modifier = item.classList[1];
     if (!modifiers.includes(modifier)) {
       item.remove();
     }
   });
 
-  const offerPhotos = offerElement.querySelector('.popup__photos');
-  offer.photos.find((photoSrc) => {
-    const offerPhoto = offerPhotos.querySelector('.popup__photo').cloneNode(false);
-    offerPhoto.src = photoSrc;
-    offerPhotos.appendChild(offerPhoto);
+  const popupPhotos = offerElement.querySelector('.popup__photos');
+  offer.photos.forEach((photoSrc) => {
+    const popupPhoto = popupPhotos.querySelector('.popup__photo').cloneNode(false);
+    popupPhoto.src = photoSrc;
+    popupPhotos.appendChild(popupPhoto);
   });
-  offerPhotos.querySelector('.popup__photo').remove();
+  popupPhotos.querySelector('.popup__photo').remove();
 
-  checkAvailability();
   return offerElement;
 };
 
