@@ -8,7 +8,7 @@ const offerType = {
 };
 
 const checkAvailability = (element, content) => {
-  if (content == undefined) {
+  if (content === undefined) {
     element.remove();
   }
   element.textContent = content;
@@ -36,7 +36,7 @@ const fillOfferTemplate = (author, offer) => {
 
   popupAvatar.src = author;
   if (!author) {
-    avatar.remove();
+    popupAvatar.remove();
   }
 
   const modifiers = offer.features.map((feature) => `popup__feature--${feature}`);
