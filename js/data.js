@@ -104,6 +104,6 @@ const createCard = () => {
 };
 
 const similarCards = new Array(SIMILAR_OFFERS_COUNT).fill(null).map(() => createCard());
-const firstOffer = similarCards[0];
+const [firstOffer] = similarCards;
 
 export {firstOffer};
