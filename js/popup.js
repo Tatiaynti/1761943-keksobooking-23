@@ -34,15 +34,17 @@ const fillOfferTemplate = (author, offer) => {
   checkAvailability(popupTime, `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`);
   checkAvailability(popupDescription, offer.description);
 
-  popupAvatar.src = author;
-  if (!author) {
+  if (author) {
+    popupAvatar.src = author;
+  }
+  else {
     popupAvatar.remove();
   }
 
   const modifiers = offer.features.map((feature) => `popup__feature--${feature}`);
   const popupFeature = offerElement.querySelectorAll('.popup__feature');
   popupFeature.forEach((item) => {
-    const modifier = item.classList[1];
+    const [, modifier] = item.classList;
     if (!modifiers.includes(modifier)) {
       item.remove();
     }
