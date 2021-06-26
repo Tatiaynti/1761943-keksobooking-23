@@ -1,2 +1,3 @@
-import {similarCards} from './data.js';
-similarCards;
+import {mapCanvas} from './map.js';
+
+mapCanvas;
