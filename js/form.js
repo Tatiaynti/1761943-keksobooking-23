@@ -15,14 +15,14 @@ const deactivateForm = () => {
 };
 
 const activateForm = () => {
-    adForm.classList.remove('ad-form--disabled');
-    for (const fieldset of fieldsets) {
-      fieldset.disabled = false;
-    }
-    mapFilters.classList.remove('map__filters--disabled');
-    for (const select of selects) {
-      select.disabled = false;
-    }
+  adForm.classList.remove('ad-form--disabled');
+  for (const fieldset of fieldsets) {
+    fieldset.disabled = false;
+  }
+  mapFilters.classList.remove('map__filters--disabled');
+  for (const select of selects) {
+    select.disabled = false;
+  }
 };
 
 export {deactivateForm, activateForm};
