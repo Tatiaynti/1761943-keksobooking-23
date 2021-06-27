@@ -17,4 +17,4 @@ const getRandomFloat = (min, max, decimalPoints = 1) => {
 const getRandomArrayElement = (elements) =>
   elements[getRandomNumber(0, elements.length - 1)];
 
-  export {getRandomNumber, getRandomFloat, getRandomArrayElement};
+export {getRandomNumber, getRandomFloat, getRandomArrayElement};
