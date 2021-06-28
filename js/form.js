@@ -54,18 +54,20 @@ submitButton.addEventListener('click', () => {
   capacityChangeHandler();
 });
 
-const deactivateForm = () => {
+const toggleActivationForm = (data) => {
+  evt.preventDefault();
+  if (!data) {
   adForm.classList.add('ad-form--disabled');
   mapFilters.classList.add('map__filters--disabled');
-  fieldsets.forEach((fieldset) => fieldset.setAttribute('disabled'));
-  selects.forEach((select) => select.setAttribute('disabled'));
-};
-
-const activateForm = () => {
+  fieldsets.forEach((fieldset) => fieldset.setAttribute('disabled', ''));
+  selects.forEach((select) => select.setAttribute('disabled', ''));
+  }
+  else {
   adForm.classList.remove('ad-form--disabled');
   mapFilters.classList.remove('map__filters--disabled');
   fieldsets.forEach((fieldset) => fieldset.removeAttribute('disabled'));
   selects.forEach((select) => select.removeAttribute('disabled'));
+  }
 };
 
-export {deactivateForm, activateForm};
+export {toggleActivationForm};
