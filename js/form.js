@@ -7,6 +7,17 @@ const priceInput = document.querySelector('#price');
 const roomNumberInput = adForm.querySelector('#room_number');
 const capacityInput = adForm.querySelector('#capacity');
 const submitButton = document.querySelector('.ad-form__submit');
+const typeInput = adForm.querySelector('#type');
+const timeInInput = adForm.querySelector('#timein');
+const timeOutInput = adForm.querySelector('#timeout');
+
+const minPriceForType = {
+  bungalow: 0,
+  flat: 1000,
+  hotel: 3000,
+  house: 5000,
+  palace: 10000,
+};
 
 const validateTitle = () => {
   if (titleInput.validity.valueMissing) {
@@ -43,10 +54,23 @@ const capacityChangeHandler = () => {
   roomNumberInput.reportValidity();
 };
 
+const typeChangeHandler = () => {
+  priceInput.placeholder = minPriceForType[typeInput.value];
+  priceInput.min = minPriceForType[typeInput.value];
+};
+
+const checkinChangeHandler = (evt) => {
+  timeOutInput.value = evt.target.value;
+  timeInInput.value = evt.target.value;
+};
+
+typeInput.addEventListener('change', typeChangeHandler);
 titleInput.addEventListener('change', validateTitle);
 priceInput.addEventListener('change', validatePrice);
 roomNumberInput.addEventListener('change', capacityChangeHandler);
 capacityInput.addEventListener('change', capacityChangeHandler);
+timeInInput.addEventListener('change', checkinChangeHandler);
+timeOutInput.addEventListener('change', checkinChangeHandler);
 
 submitButton.addEventListener('click', () => {
   validateTitle();
@@ -55,18 +79,18 @@ submitButton.addEventListener('click', () => {
 });
 
 const toggleActivationForm = (data) => {
+  adForm.classList.toggle('ad-form--disabled');
+  mapFilters.classList.toggle('map__filters--disabled');
   if (!data) {
-    adForm.classList.toggle('ad-form--disabled');
-    mapFilters.classList.toggle('map__filters--disabled');
     fieldsets.forEach((fieldset) => fieldset.setAttribute('disabled', ''));
     selects.forEach((select) => select.setAttribute('disabled', ''));
   }
   else {
-    adForm.classList.remove('ad-form--disabled');
-    mapFilters.classList.remove('map__filters--disabled');
     fieldsets.forEach((fieldset) => fieldset.removeAttribute('disabled'));
     selects.forEach((select) => select.removeAttribute('disabled'));
   }
+  adForm.classList.toggle('ad-form--disabled');
+  mapFilters.classList.toggle('map__filters--disabled');
 };
 
 export {toggleActivationForm};
