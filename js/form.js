@@ -55,7 +55,6 @@ submitButton.addEventListener('click', () => {
 });
 
 const toggleActivationForm = (data) => {
-  event.preventDefault();
   if (!data) {
     adForm.classList.add('ad-form--disabled');
     mapFilters.classList.add('map__filters--disabled');

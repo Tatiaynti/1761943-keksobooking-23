@@ -3,4 +3,4 @@ import {mapCanvas} from './map.js';
 
 mapCanvas;
 
-toggleActivationForm();
+toggleActivationForm(data);
