@@ -6,6 +6,7 @@ const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
 const roomNumberInput = adForm.querySelector('#room_number');
 const capacityInput = adForm.querySelector('#capacity');
+const submitButton = document.querySelector('.ad-form__submit');
 
 const validateTitle = () => {
   if (titleInput.validity.valueMissing) {
@@ -47,7 +48,7 @@ priceInput.addEventListener('change', validatePrice);
 roomNumberInput.addEventListener('change', capacityChangeHandler);
 capacityInput.addEventListener('change', capacityChangeHandler);
 
-adForm.addEventListener('submit', () => {
+submitButton.addEventListener('click', () => {
   validateTitle();
   validatePrice();
   capacityChangeHandler();
