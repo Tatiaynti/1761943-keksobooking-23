@@ -6,7 +6,6 @@ const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
 const roomNumberInput = adForm.querySelector('#room_number');
 const capacityInput = adForm.querySelector('#capacity');
-const submitButton = document.querySelector('.ad-form__submit');
 
 const validateTitle = () => {
   if (titleInput.validity.valueMissing) {
@@ -43,12 +42,12 @@ const capacityChangeHandler = () => {
   roomNumberInput.reportValidity();
 };
 
-titleInput.addEventListener('invalid', validateTitle);
-priceInput.addEventListener('invalid', validatePrice);
+titleInput.addEventListener('change', validateTitle);
+priceInput.addEventListener('change', validatePrice);
 roomNumberInput.addEventListener('change', capacityChangeHandler);
 capacityInput.addEventListener('change', capacityChangeHandler);
 
-submitButton.addEventListener('click', () => {
+adForm.addEventListener('submit', () => {
   validateTitle();
   validatePrice();
   capacityChangeHandler();
@@ -56,8 +55,8 @@ submitButton.addEventListener('click', () => {
 
 const toggleActivationForm = (data) => {
   if (!data) {
-    adForm.classList.add('ad-form--disabled');
-    mapFilters.classList.add('map__filters--disabled');
+    adForm.classList.toggle('ad-form--disabled');
+    mapFilters.classList.toggle('map__filters--disabled');
     fieldsets.forEach((fieldset) => fieldset.setAttribute('disabled', ''));
     selects.forEach((select) => select.setAttribute('disabled', ''));
   }
