@@ -35,7 +35,7 @@ const fillOfferTemplate = (similarCard) => {
   checkAvailability(popupDescription, similarCard.offer.description);
 
   if (similarCard.author.avatar) {
-    popupAvatar.src = author;
+    popupAvatar.src = similarCard.author.avatar;
   }
   else {
     popupAvatar.remove();
