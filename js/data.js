@@ -100,10 +100,13 @@ const createCard = () => {
       description: getRandomArrayElement(DESCRIPTIONS),
       photos: [...new Set(photosArray)],
     },
+    location: {
+      lat: lat,
+      lng: lng,
+    },
   };
 };
 
 const similarCards = new Array(SIMILAR_OFFERS_COUNT).fill(null).map(() => createCard());
-const [firstOffer] = similarCards;
 
-export {firstOffer};
+export {similarCards};
