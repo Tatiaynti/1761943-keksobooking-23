@@ -1,4 +1,5 @@
-const similarOfferTemplate = document.querySelector('#card').content;
+const similarOfferTemplate = document.querySelector('#card')
+  .content.querySelector('.popup');
 const offerType = {
   'flat': 'Квартира',
   'bungalow': 'Бунгало',
