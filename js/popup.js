@@ -1,4 +1,5 @@
-const similarOfferTemplate = document.querySelector('#card').content;
+const similarOfferTemplate = document.querySelector('#card')
+  .content.querySelector('.popup');
 const offerType = {
   'flat': 'Квартира',
   'bungalow': 'Бунгало',
@@ -14,7 +15,7 @@ const checkAvailability = (element, content) => {
   element.textContent = content;
 };
 
-const fillOfferTemplate = (author, offer) => {
+const fillOfferTemplate = (similarCard) => {
   const offerElement = similarOfferTemplate.cloneNode(true);
 
   const popupTitle = offerElement.querySelector('.popup__title');
@@ -26,22 +27,22 @@ const fillOfferTemplate = (author, offer) => {
   const popupDescription = offerElement.querySelector('.popup__description');
   const popupAvatar = offerElement.querySelector('.popup__avatar');
 
-  checkAvailability(popupTitle, offer.title);
-  checkAvailability(popupAddress, offer.address);
-  checkAvailability(popupPrice, `${offer.price} ₽/ночь`);
-  checkAvailability(popupType, offerType[offer.type]);
-  checkAvailability(popupCapacity, `${offer.rooms} комнаты для ${offer.guests} гостей`);
-  checkAvailability(popupTime, `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`);
-  checkAvailability(popupDescription, offer.description);
+  checkAvailability(popupTitle, similarCard.offer.title);
+  checkAvailability(popupAddress, similarCard.offer.address);
+  checkAvailability(popupPrice, `${similarCard.offer.price} ₽/ночь`);
+  checkAvailability(popupType, offerType[similarCard.offer.type]);
+  checkAvailability(popupCapacity, `${similarCard.offer.rooms} комнаты для ${similarCard.offer.guests} гостей`);
+  checkAvailability(popupTime, `Заезд после ${similarCard.offer.checkin}, выезд до ${similarCard.offer.checkout}`);
+  checkAvailability(popupDescription, similarCard.offer.description);
 
-  if (author) {
-    popupAvatar.src = author;
+  if (similarCard.author.avatar) {
+    popupAvatar.src = similarCard.author.avatar;
   }
   else {
     popupAvatar.remove();
   }
 
-  const modifiers = offer.features.map((feature) => `popup__feature--${feature}`);
+  const modifiers = similarCard.offer.features.map((feature) => `popup__feature--${feature}`);
   const popupFeature = offerElement.querySelectorAll('.popup__feature');
   popupFeature.forEach((item) => {
     const [, modifier] = item.classList;
@@ -51,7 +52,7 @@ const fillOfferTemplate = (author, offer) => {
   });
 
   const popupPhotos = offerElement.querySelector('.popup__photos');
-  offer.photos.forEach((photoSrc) => {
+  similarCard.offer.photos.forEach((photoSrc) => {
     const popupPhoto = popupPhotos.querySelector('.popup__photo').cloneNode(false);
     popupPhoto.src = photoSrc;
     popupPhotos.appendChild(popupPhoto);

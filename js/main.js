@@ -1,6 +1,3 @@
-import {toggleActivationForm} from './form.js';
-import {mapCanvas} from './map.js';
+import {map} from './map.js';
 
-mapCanvas;
-
-toggleActivationForm(true);
+map;

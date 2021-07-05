@@ -86,7 +86,8 @@ const createCard = () => {
   const photosArray = new Array(getRandomNumber(1, PHOTOS.length)).fill('').map(() =>
     PHOTOS[getRandomNumber(0, PHOTOS.length - 1)]);
   return {
-    author: avatar,
+    author:
+    { avatar },
     offer: {
       title: getRandomArrayElement(TITLES),
       address: `${lat}, ${lng}`,
@@ -100,10 +101,13 @@ const createCard = () => {
       description: getRandomArrayElement(DESCRIPTIONS),
       photos: [...new Set(photosArray)],
     },
+    location: {
+      lat: lat,
+      lng: lng,
+    },
   };
 };
 
 const similarCards = new Array(SIMILAR_OFFERS_COUNT).fill(null).map(() => createCard());
-const [firstOffer] = similarCards;
 
-export {firstOffer};
+export {similarCards};
