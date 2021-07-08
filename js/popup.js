@@ -26,6 +26,7 @@ const fillOfferTemplate = (similarCard) => {
   const popupTime = offerElement.querySelector('.popup__text--time');
   const popupDescription = offerElement.querySelector('.popup__description');
   const popupAvatar = offerElement.querySelector('.popup__avatar');
+  const popupFeature = offerElement.querySelectorAll('.popup__feature');
 
   checkAvailability(popupTitle, similarCard.offer.title);
   checkAvailability(popupAddress, similarCard.offer.address);
@@ -42,15 +43,17 @@ const fillOfferTemplate = (similarCard) => {
     popupAvatar.remove();
   }
 
-  const modifiers = similarCard.offer.features.map((feature) => `popup__feature--${feature}`);
-  const popupFeature = offerElement.querySelectorAll('.popup__feature');
-  popupFeature.forEach((item) => {
+ if (similarCard.offer.features) {
+    const modifiers = similarCard.offer.features.map((feature) => `popup__feature--${feature}`);
+    popupFeature.forEach((item) => {
     const [, modifier] = item.classList;
     if (!modifiers.includes(modifier)) {
       item.remove();
     }
   });
+  }
 
+  if (similarCard.offer.photos) {
   const popupPhotos = offerElement.querySelector('.popup__photos');
   similarCard.offer.photos.forEach((photoSrc) => {
     const popupPhoto = popupPhotos.querySelector('.popup__photo').cloneNode(false);
@@ -58,6 +61,10 @@ const fillOfferTemplate = (similarCard) => {
     popupPhotos.appendChild(popupPhoto);
   });
   popupPhotos.querySelector('.popup__photo').remove();
+}
+else {
+  offerElement.querySelector('.popup__photos').remove();
+}
 
   return offerElement;
 };

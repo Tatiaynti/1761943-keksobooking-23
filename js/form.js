@@ -1,4 +1,8 @@
+import { sendData } from "./api.js";
+import { setDefaultAddress, setDefaultMainPin } from "./map.js";
+
 const adForm = document.querySelector('.ad-form');
+const resetForm = document.querySelector('.ad-form__reset');
 const fieldsets = adForm.querySelectorAll('fieldset');
 const mapFilters = document.querySelector('.map__filters');
 const selects = mapFilters.querySelectorAll('select');
@@ -93,5 +97,27 @@ const toggleActivationForm = (data) => {
     selects.forEach((select) => select.removeAttribute('disabled'));
   }
 };
+
+const resetFormAndFilters = () => {
+  adForm.reset();
+  mapFilters.reset();
+};
+
+adForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  sendData(
+    new FormData(evt.target),
+  );
+  resetFormAndFilters();
+  setDefaultMainPin();
+  setDefaultAddress();
+});
+
+resetForm.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  resetFormAndFilters();
+  setDefaultMainPin();
+  setDefaultAddress();
+});
 
 export {toggleActivationForm};
