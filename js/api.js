@@ -1,18 +1,18 @@
-import { showErrorMessage, showSuccessMessage } from "./messages.js";
-import {showAlert} from "./util.js";
+import { showErrorMessage, showSuccessMessage } from './messages.js';
+import {showAlert} from './util.js';
 
 const DATA_ENDPOINT = 'https://23.javascript.pages.academy/keksobooking/data';
 const MAIN_ENDPOINT = 'https://23.javascript.pages.academy/keksobooking';
 
 const getData = (onSuccess) => {
-    fetch(DATA_ENDPOINT)
-      .then((response) => response.json())
-      .then((offers) => {
-        onSuccess(offers);
-      })
-      .catch(() => {
-        showAlert('Не удалось загрузить объявления.');
-      });
+  fetch(DATA_ENDPOINT)
+    .then((response) => response.json())
+    .then((offers) => {
+      onSuccess(offers);
+    })
+    .catch(() => {
+      showAlert('Не удалось загрузить объявления.');
+    });
 };
 
 const sendData = (body) => {
@@ -30,7 +30,7 @@ const sendData = (body) => {
     })
     .catch(() => {
       showErrorMessage();
-  });
+    });
 };
 
 export {getData, sendData};

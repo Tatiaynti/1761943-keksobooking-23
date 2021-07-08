@@ -43,28 +43,28 @@ const fillOfferTemplate = (similarCard) => {
     popupAvatar.remove();
   }
 
- if (similarCard.offer.features) {
+  if (similarCard.offer.features) {
     const modifiers = similarCard.offer.features.map((feature) => `popup__feature--${feature}`);
     popupFeature.forEach((item) => {
-    const [, modifier] = item.classList;
-    if (!modifiers.includes(modifier)) {
-      item.remove();
-    }
-  });
+      const [, modifier] = item.classList;
+      if (!modifiers.includes(modifier)) {
+        item.remove();
+      }
+    });
   }
 
   if (similarCard.offer.photos) {
-  const popupPhotos = offerElement.querySelector('.popup__photos');
-  similarCard.offer.photos.forEach((photoSrc) => {
-    const popupPhoto = popupPhotos.querySelector('.popup__photo').cloneNode(false);
-    popupPhoto.src = photoSrc;
-    popupPhotos.appendChild(popupPhoto);
-  });
-  popupPhotos.querySelector('.popup__photo').remove();
-}
-else {
-  offerElement.querySelector('.popup__photos').remove();
-}
+    const popupPhotos = offerElement.querySelector('.popup__photos');
+    similarCard.offer.photos.forEach((photoSrc) => {
+      const popupPhoto = popupPhotos.querySelector('.popup__photo').cloneNode(false);
+      popupPhoto.src = photoSrc;
+      popupPhotos.appendChild(popupPhoto);
+    });
+    popupPhotos.querySelector('.popup__photo').remove();
+  }
+  else {
+    offerElement.querySelector('.popup__photos').remove();
+  }
 
   return offerElement;
 };

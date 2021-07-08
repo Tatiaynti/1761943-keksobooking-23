@@ -1,5 +1,5 @@
-import { sendData } from "./api.js";
-import { setDefaultAddress, setDefaultMainPin } from "./map.js";
+import { sendData } from './api.js';
+import { setDefaultAddress, setDefaultMainPin } from './map.js';
 
 const adForm = document.querySelector('.ad-form');
 const resetForm = document.querySelector('.ad-form__reset');
