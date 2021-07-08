@@ -7,9 +7,7 @@ const MAIN_ENDPOINT = 'https://23.javascript.pages.academy/keksobooking';
 const getData = (onSuccess) => {
   fetch(DATA_ENDPOINT)
     .then((response) => response.json())
-    .then((offers) => {
-      onSuccess(offers);
-    })
+    .then(onSuccess)
     .catch(() => {
       showAlert('Не удалось загрузить объявления.');
     });
