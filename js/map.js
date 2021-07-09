@@ -1,5 +1,5 @@
 import {toggleActivationForm} from './form.js';
-import {similarCards} from './data.js';
+// import {similarCards} from './data.js';
 import {fillOfferTemplate} from './popup.js';
 
 const addressCard = document.querySelector('#address');
@@ -10,6 +10,9 @@ const CENTER_TOKIO = {
   lng: LNG_CENTER_TOKIO,
 };
 const ZOOM = 12;
+const DECIMAL_POINTS = 5;
+const TILE_LAYER_PNG = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const TILE_LAYER_COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 const ICON_SIZE_MAIN = [52, 52];
 const ICON_ANCOR_MAIN = [26, 52];
@@ -37,9 +40,6 @@ const map = L.map('map-canvas')
   })
   .setView(CENTER_TOKIO, ZOOM);
 
-const TILE_LAYER_PNG = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-const TILE_LAYER_COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-
 const tileLayer = L.tileLayer(
   TILE_LAYER_PNG,
   {
@@ -59,18 +59,15 @@ marker.addTo(map);
 
 const markerGroup = L.layerGroup().addTo(map);
 
-const decimalPoints = 5;
 const inputCoordinates = (evt) => {
-  addressCard.value = `${evt.target.getLatLng().lat.toFixed(decimalPoints)}, ${evt.target.getLatLng().lng.toFixed(decimalPoints)}`;
+  addressCard.value = `${evt.target.getLatLng().lat.toFixed(DECIMAL_POINTS)}, ${evt.target.getLatLng().lng.toFixed(DECIMAL_POINTS)}`;
 };
 marker.on('moveend', inputCoordinates);
 
 const createMarkerWithInfo = (similarCard) => {
   const {location} = similarCard;
-  const {lat, lng} = location;
-  const iconPosition = {lat, lng};
 
-  const markerUsual = L.marker(iconPosition, usualPinIcon);
+  const markerUsual = L.marker(location, usualPinIcon);
 
   markerUsual
     .addTo(markerGroup)
@@ -80,8 +77,9 @@ const createMarkerWithInfo = (similarCard) => {
     );
 };
 
-similarCards.forEach((similarCard) => {
-  createMarkerWithInfo(similarCard);
-});
+const showMarkers = (offers) => offers.forEach(createMarkerWithInfo);
 
-export {map};
+const setDefaultMainPin = () => marker.setLatLng(CENTER_TOKIO);
+const setDefaultAddress = () => addressCard.value = `${LAT_CENTER_TOKIO}, ${LNG_CENTER_TOKIO}`;
+
+export {showMarkers, setDefaultMainPin, setDefaultAddress};
