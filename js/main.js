@@ -1,3 +1,5 @@
-import {map} from './map.js';
+import { getData } from './api.js';
+import {showMarkers} from './map.js';
 
-map;
+
+getData(showMarkers);
