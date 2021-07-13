@@ -115,7 +115,7 @@ adForm.addEventListener('submit', (evt) => {
   sendData(
     new FormData(evt.target),
   );
-    resetToDefault();
+  resetToDefault();
 });
 
 resetForm.addEventListener('click', (evt) => {

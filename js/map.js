@@ -93,11 +93,11 @@ const setDefaultAddress = () => addressInput.value = `${LAT_CENTER_TOKIO}, ${LNG
 
 const initializeMap = () => {
   map.on('load', () => {
-   toggleActivationForm(true);
+    toggleActivationForm(true);
     setDefaultAddress();
     getData(onGetSuccess);
   })
-  .setView(CENTER_TOKIO, ZOOM);
-}
+    .setView(CENTER_TOKIO, ZOOM);
+};
 
 export {showMarkers, setDefaultMainPin, setDefaultAddress, removeMarkerGroup, initializeMap};

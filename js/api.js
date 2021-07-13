@@ -1,4 +1,4 @@
-import {doRanking, setFilterFormChange} from './filters.js';
+import {getFeaturesArray, setFilterFormChange} from './filters.js';
 import {toggleActivationForm} from './form.js';
 import {showMarkers} from './map.js';
 import {showErrorMessage, showSuccessMessage} from './messages.js';
@@ -8,16 +8,16 @@ const DATA_ENDPOINT = 'https://23.javascript.pages.academy/keksobooking/data';
 const MAIN_ENDPOINT = 'https://23.javascript.pages.academy/keksobooking';
 
 const onGetSuccess = (response) => {
-  const rankingResponse = doRanking(response);
+  const rankingResponse = response.reduce(getFeaturesArray, []);
   showMarkers(rankingResponse);
   toggleActivationForm(true);
   setFilterFormChange(() => showMarkers(rankingResponse));
 };
 
-const getData = (onGetSuccess) => {
+const getData = (onSuccess) => {
   fetch(DATA_ENDPOINT)
     .then((response) => response.json())
-    .then((data) => onGetSuccess(data))
+    .then((data) => onSuccess(data))
     .catch(() => {
       showAlert('Не удалось загрузить объявления.');
     });

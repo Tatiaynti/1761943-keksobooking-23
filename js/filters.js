@@ -49,15 +49,10 @@ const filterOffers = ({offer}) =>
 
 const getFeaturesArray = (features, item) => {
   const rank = item.offer.features && item.offer.features.length ? item.offer.features.length : 0;
-    item.rank = rank;
-    features.push(item);
-    return features;
-}
-
-const doRanking = (data) =>
-  data
-    .reduce(getFeaturesArray, [])
-    .sort((a, b) => b.rank - a.rank);
+  item.rank = rank;
+  features.push(item);
+  return features;
+};
 
 const setFilterFormChange = (cb) => {
   mapFilters.addEventListener('change', () => {
@@ -69,4 +64,4 @@ const setFilterFormChange = (cb) => {
   });
 };
 
-export {mapFilters, filterOffers, doRanking, setFilterFormChange};
+export {mapFilters, filterOffers, setFilterFormChange, getFeaturesArray};
