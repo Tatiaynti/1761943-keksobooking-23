@@ -1,24 +1,5 @@
 const ALERT_TIMEOUT = 5000;
 
-const getRandomNumber = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return (max > min && min >= 0)
-    ? Math.floor(Math.random() * (max - min + 1)) + min
-    : undefined;
-};
-
-const getRandomFloat = (min, max, decimalPoints = 1) => {
-  if (max > min && min >= 0) {
-    const randomNumber = Math.random() * (max - min + 1) + min;
-    return randomNumber.toFixed(decimalPoints);
-  }
-  return undefined;
-};
-
-const getRandomArrayElement = (elements) =>
-  elements[getRandomNumber(0, elements.length - 1)];
-
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 1000;
@@ -40,4 +21,4 @@ const showAlert = (message) => {
   }, ALERT_TIMEOUT);
 };
 
-export {getRandomNumber, getRandomFloat, getRandomArrayElement, showAlert};
+export {showAlert};

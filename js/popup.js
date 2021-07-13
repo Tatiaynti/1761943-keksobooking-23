@@ -1,6 +1,6 @@
 const similarOfferTemplate = document.querySelector('#card')
   .content.querySelector('.popup');
-const offerType = {
+const OfferType = {
   'flat': 'Квартира',
   'bungalow': 'Бунгало',
   'house': 'Дом',
@@ -31,7 +31,7 @@ const fillOfferTemplate = (similarCard) => {
   checkAvailability(popupTitle, similarCard.offer.title);
   checkAvailability(popupAddress, similarCard.offer.address);
   checkAvailability(popupPrice, `${similarCard.offer.price} ₽/ночь`);
-  checkAvailability(popupType, offerType[similarCard.offer.type]);
+  checkAvailability(popupType, OfferType[similarCard.offer.type]);
   checkAvailability(popupCapacity, `${similarCard.offer.rooms} комнаты для ${similarCard.offer.guests} гостей`);
   checkAvailability(popupTime, `Заезд после ${similarCard.offer.checkin}, выезд до ${similarCard.offer.checkout}`);
   checkAvailability(popupDescription, similarCard.offer.description);
