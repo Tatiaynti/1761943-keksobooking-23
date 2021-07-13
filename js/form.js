@@ -1,19 +1,19 @@
-import { sendData } from './api.js';
-import { setDefaultAddress, setDefaultMainPin } from './map.js';
+import {getData, onGetSuccess, sendData} from './api.js';
+import {mapFilters} from './filters.js';
+import {setDefaultAddress, setDefaultMainPin} from './map.js';
 
 const adForm = document.querySelector('.ad-form');
 const resetForm = document.querySelector('.ad-form__reset');
 const fieldsets = adForm.querySelectorAll('fieldset');
-const mapFilters = document.querySelector('.map__filters');
 const selects = mapFilters.querySelectorAll('select');
 const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
 const roomNumberInput = adForm.querySelector('#room_number');
 const capacityInput = adForm.querySelector('#capacity');
-const submitButton = document.querySelector('.ad-form__submit');
 const typeInput = adForm.querySelector('#type');
 const timeInInput = adForm.querySelector('#timein');
 const timeOutInput = adForm.querySelector('#timeout');
+const submitButton = document.querySelector('.ad-form__submit');
 
 const minPriceForType = {
   bungalow: 0,
@@ -23,7 +23,7 @@ const minPriceForType = {
   palace: 10000,
 };
 
-const titleChageHandler = () => {
+const titleChangeHandler = () => {
   if (titleInput.validity.valueMissing) {
     titleInput.setCustomValidity('Заполните заголовок объявления');
   } else if (titleInput.validity.tooShort) {
@@ -69,7 +69,7 @@ const checkinChangeHandler = (evt) => {
 };
 
 typeInput.addEventListener('change', typeChangeHandler);
-titleInput.addEventListener('change', titleChageHandler);
+titleInput.addEventListener('change', titleChangeHandler);
 priceInput.addEventListener('change', priceChangeHandler);
 roomNumberInput.addEventListener('change', capacityChangeHandler);
 capacityInput.addEventListener('change', capacityChangeHandler);
@@ -77,7 +77,7 @@ timeInInput.addEventListener('change', checkinChangeHandler);
 timeOutInput.addEventListener('change', checkinChangeHandler);
 
 submitButton.addEventListener('click', () => {
-  titleChageHandler();
+  titleChangeHandler();
   priceChangeHandler();
   capacityChangeHandler();
   typeChangeHandler();
@@ -103,21 +103,24 @@ const resetFormAndFilters = () => {
   mapFilters.reset();
 };
 
+const resetToDefault = () => {
+  resetFormAndFilters();
+  setDefaultMainPin();
+  setDefaultAddress();
+  getData(onGetSuccess);
+};
+
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   sendData(
     new FormData(evt.target),
   );
-  resetFormAndFilters();
-  setDefaultMainPin();
-  setDefaultAddress();
+    resetToDefault();
 });
 
 resetForm.addEventListener('click', (evt) => {
   evt.preventDefault();
-  resetFormAndFilters();
-  setDefaultMainPin();
-  setDefaultAddress();
+  resetToDefault();
 });
 
-export {toggleActivationForm};
+export {toggleActivationForm, resetForm};
