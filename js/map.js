@@ -4,7 +4,6 @@ import {filterOffers} from './filters.js';
 import {toggleActivationForm} from './form.js';
 import {fillOfferTemplate} from './popup.js';
 
-
 const OFFERS_COUNT = 10;
 const LAT_CENTER_TOKIO = 35.68950;
 const LNG_CENTER_TOKIO = 139.69171;
@@ -17,20 +16,20 @@ const DECIMAL_POINTS = 5;
 const TILE_LAYER_PNG = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const TILE_LAYER_COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
-const ICON_SIZE_MAIN = [52, 52];
-const ICON_ANCOR_MAIN = [26, 52];
+const ICON_MAIN_SIZES = [52, 52];
+const ICON_MAIN_ANCORS = [26, 52];
 const MAIN_PIN_ATTRIBUTES = {
   iconUrl: './img/main-pin.svg',
-  iconSize: ICON_SIZE_MAIN,
-  iconAnchor: ICON_ANCOR_MAIN,
+  iconSize: ICON_MAIN_SIZES,
+  iconAnchor: ICON_MAIN_ANCORS,
 };
 
-const ICON_SIZE_USUAL_PIN = [40, 40];
-const ICON_ANCOR_USUAL_PIN = [20, 40];
+const ICON_USUAL_PIN_SIZES = [40, 40];
+const ICON_USUAL_PIN_ANCORS = [20, 40];
 const USUAL_PIN_ATTRIBUTES = {
   iconUrl: './img/pin.svg',
-  iconSize: ICON_SIZE_USUAL_PIN,
-  iconAnchor: ICON_ANCOR_USUAL_PIN,
+  iconSize: ICON_USUAL_PIN_SIZES,
+  iconAnchor: ICON_USUAL_PIN_ANCORS,
 };
 
 const addressInput = document.querySelector('#address');

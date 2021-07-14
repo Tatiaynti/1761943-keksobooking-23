@@ -115,7 +115,6 @@ adForm.addEventListener('submit', (evt) => {
   sendData(
     new FormData(evt.target),
   );
-  resetToDefault();
 });
 
 resetForm.addEventListener('click', (evt) => {
@@ -123,4 +122,4 @@ resetForm.addEventListener('click', (evt) => {
   resetToDefault();
 });
 
-export {toggleActivationForm, resetForm};
+export {toggleActivationForm, resetForm, resetToDefault};

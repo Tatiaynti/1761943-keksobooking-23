@@ -1,5 +1,5 @@
 import {getFeaturesArray, setFilterFormChange} from './filters.js';
-import {toggleActivationForm} from './form.js';
+import {resetToDefault, toggleActivationForm} from './form.js';
 import {showMarkers} from './map.js';
 import {showErrorMessage, showSuccessMessage} from './messages.js';
 import {debounce, showAlert} from './util.js';
@@ -33,6 +33,7 @@ const sendData = (body) => {
     .then((response) => {
       if (response.ok) {
         showSuccessMessage();
+        resetToDefault();
       } else {
         showErrorMessage();
       }
