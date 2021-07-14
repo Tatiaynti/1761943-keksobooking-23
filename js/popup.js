@@ -8,7 +8,7 @@ const OfferType = {
   'hotel': 'Отель',
 };
 
-const checkAvailability = (element, content) => {
+const renderElement = (element, content) => {
   if (content === undefined) {
     element.remove();
   }
@@ -28,13 +28,13 @@ const fillOfferTemplate = (similarCard) => {
   const popupAvatar = offerElement.querySelector('.popup__avatar');
   const popupFeature = offerElement.querySelectorAll('.popup__feature');
 
-  checkAvailability(popupTitle, similarCard.offer.title);
-  checkAvailability(popupAddress, similarCard.offer.address);
-  checkAvailability(popupPrice, `${similarCard.offer.price} ₽/ночь`);
-  checkAvailability(popupType, OfferType[similarCard.offer.type]);
-  checkAvailability(popupCapacity, `${similarCard.offer.rooms} комнаты для ${similarCard.offer.guests} гостей`);
-  checkAvailability(popupTime, `Заезд после ${similarCard.offer.checkin}, выезд до ${similarCard.offer.checkout}`);
-  checkAvailability(popupDescription, similarCard.offer.description);
+  renderElement(popupTitle, similarCard.offer.title);
+  renderElement(popupAddress, similarCard.offer.address);
+  renderElement(popupPrice, `${similarCard.offer.price} ₽/ночь`);
+  renderElement(popupType, OfferType[similarCard.offer.type]);
+  renderElement(popupCapacity, `${similarCard.offer.rooms} комнаты для ${similarCard.offer.guests} гостей`);
+  renderElement(popupTime, `Заезд после ${similarCard.offer.checkin}, выезд до ${similarCard.offer.checkout}`);
+  renderElement(popupDescription, similarCard.offer.description);
 
   if (similarCard.author.avatar) {
     popupAvatar.src = similarCard.author.avatar;

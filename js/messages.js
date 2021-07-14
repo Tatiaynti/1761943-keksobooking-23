@@ -1,4 +1,4 @@
-const isEsc = (key) => key === 'Escape' || key === 'Esc';
+import {isEsc} from "./util.js";
 
 const templateErrorMessage = document.querySelector('#error').content;
 const templateSuccessMessage = document.querySelector('#success').content;
