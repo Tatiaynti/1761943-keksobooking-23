@@ -1,6 +1,5 @@
 import {removeMarkerGroup} from './map.js';
 
-const FILTER_DELAY = 500;
 const PRICES_KEYS = {
   'low': 10000,
   'high': 50000,
@@ -12,8 +11,6 @@ const priceFilter = mapFilters.querySelector('#housing-price');
 const roomsFilter = mapFilters.querySelector('#housing-rooms');
 const guestsFilter = mapFilters.querySelector('#housing-guests');
 const featuresFilter = mapFilters.querySelector('#housing-features');
-
-let timer;
 
 const getFilteredByPrice = (price) => {
   switch (priceFilter.value) {
@@ -48,20 +45,17 @@ const filterOffers = ({offer}) =>
   getFilteredByFeatures(offer.features);
 
 const getFeaturesArray = (features, item) => {
-  const rank = item.offer.features && item.offer.features.length ? item.offer.features.length : 0;
-  item.rank = rank;
+  item.rank = item.offer.features && item.offer.features.length ? item.offer.features.length : 0;
   features.push(item);
   return features;
 };
 
 const setFilterFormChange = (cb) => {
   mapFilters.addEventListener('change', () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      removeMarkerGroup();
-      cb();
-    }, FILTER_DELAY);
-  });
+    removeMarkerGroup();
+    cb();
+  })
 };
+
 
 export {mapFilters, filterOffers, setFilterFormChange, getFeaturesArray};

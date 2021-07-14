@@ -1,8 +1,12 @@
 const ALERT_TIMEOUT = 5000;
+const POSITION_Z = 1000;
+const TIMEOUT_DELAY = 500;
+
+const isEsc = (key) => key === 'Escape' || key === 'Esc';
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 1000;
+  alertContainer.style.zIndex = POSITION_Z;
   alertContainer.style.position = 'absolute';
   alertContainer.style.left = '150px';
   alertContainer.style.top = '200px';
@@ -21,4 +25,13 @@ const showAlert = (message) => {
   }, ALERT_TIMEOUT);
 };
 
-export {showAlert};
+const debounce = (callback) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), TIMEOUT_DELAY);
+  };
+}
+
+export {showAlert, isEsc, debounce};

@@ -58,9 +58,10 @@ const marker = L.marker(
 marker.addTo(map);
 
 const inputCoordinates = (evt) => {
-  addressInput.value = `${evt.target.getLatLng().lat.toFixed(DECIMAL_POINTS)}, ${evt.target.getLatLng().lng.toFixed(DECIMAL_POINTS)}`;
+  const targetCoordinates = evt.target.getLatLng();
+  addressInput.value = `${targetCoordinates.lat.toFixed(DECIMAL_POINTS)}, ${targetCoordinates.lng.toFixed(DECIMAL_POINTS)}`;
 };
-marker.on('moveend', inputCoordinates);
+marker.addEventListener('moveend', inputCoordinates);
 
 const markerGroup = L.layerGroup().addTo(map);
 
@@ -70,7 +71,6 @@ const removeMarkerGroup = () => {
 
 const createMarkerWithInfo = (similarCard) => {
   const {location} = similarCard;
-
   const markerUsual = L.marker(location, usualPinIcon);
 
   markerUsual
@@ -92,7 +92,7 @@ const setDefaultMainPin = () => marker.setLatLng(CENTER_TOKIO);
 const setDefaultAddress = () => addressInput.value = `${LAT_CENTER_TOKIO}, ${LNG_CENTER_TOKIO}`;
 
 const initializeMap = () => {
-  map.on('load', () => {
+  map.addEventListener('load', () => {
     toggleActivationForm(true);
     setDefaultAddress();
     getData(onGetSuccess);
