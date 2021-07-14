@@ -1,4 +1,4 @@
-import {isEsc} from "./util.js";
+import {isEsc} from './util.js';
 
 const templateErrorMessage = document.querySelector('#error').content;
 const templateSuccessMessage = document.querySelector('#success').content;

@@ -54,7 +54,7 @@ const setFilterFormChange = (cb) => {
   mapFilters.addEventListener('change', () => {
     removeMarkerGroup();
     cb();
-  })
+  });
 };
 
 

@@ -32,6 +32,6 @@ const debounce = (callback) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), TIMEOUT_DELAY);
   };
-}
+};
 
 export {showAlert, isEsc, debounce};
